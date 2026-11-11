@@ -95,9 +95,6 @@ export default function HomePage() {
         <div className="container hero-main">
           <div className="hero-copy" key={active.id}>
             <h1>{active.title}</h1>
-            {active.theme !== 'warm' && 'disclaimer' in active && active.disclaimer ? (
-              <p className="hero-disclaimer">{active.disclaimer}</p>
-            ) : null}
             <Link
               to={active.ctaTo}
               className={active.theme === 'warm' ? 'cta-dark' : 'cta-red'}
@@ -107,14 +104,12 @@ export default function HomePage() {
           </div>
 
           <div className="hero-aside" key={`${active.id}-aside`}>
-            {active.visual === 'gartner' && (
+            {active.visual === 'gartner' && active.disclaimer ? (
               <div className="gartner-aside">
                 <RecognitionCard />
-                {'disclaimer' in active && active.disclaimer ? (
-                  <p className="hero-disclaimer">{active.disclaimer}</p>
-                ) : null}
+                <p className="hero-disclaimer">{active.disclaimer}</p>
               </div>
-            )}
+            ) : null}
             {active.visual === 'podcast' && active.speakers && (
               <div className="podcast-aside">
                 {active.speakers.map((sp) => (
